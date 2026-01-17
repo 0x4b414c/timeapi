@@ -17,13 +17,13 @@ function getUTCDateTime() {
 
   const timeZone = "UTC";
   const isoString = datetime.toISOString();
-  const unixTimestamp = Math.floor(datetime.getTime() / 1000);
+  const timestamp = datetime.getTime();
 
   return {
     date,
     time,
     isoString,
-    unixTimestamp,
+    timestamp,
     timeZone,
     parts: {
       year,
