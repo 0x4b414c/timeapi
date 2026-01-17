@@ -1,13 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/clock.svg" />
+    <link rel="icon" type="image/svg+xml" href="/clock.png" />
+    <link rel="stylesheet" href="src/style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Time</title>
+    <title>World Clock</title>
   </head>
   <body>
-    <div id="app"></div>
+    <div id="app">
+      <header>
+        <h1 class="title">World Clock</h1>
+        <p class="description">Search and select to see any time zone.</p>
+      </header>
+      <main>
+        <div class="display">
+          <p class="region">Greenwich Mean Time</p>
+          <section class="time-container">
+            <p class="time">88:88:88</p>
+            <section>
+              <span class="period">AM</span>
+              <span class="offset">GMT+0</span>
+            </section>
+          </section>
+          <hr />
+          <p class="date"></p>
+        </div>
+        <div class="timezones">
+          <section>
+            <label for="">Search</label>
+            <input type="text" name="" id="" placeholder="e.g new york..." />
+          </section>
+          <ul></ul>
+        </div>
+      </main>
+    </div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

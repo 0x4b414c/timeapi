@@ -12,7 +12,7 @@ function getUTCDateTime() {
   const minute = padString(datetime.getUTCMinutes());
   const second = padString(datetime.getUTCSeconds());
 
-  const date = `${year}:${month}:${day}`;
+  const date = `${year}-${month}-${day}`;
   const time = `${hour}:${minute}:${second}`;
 
   const timeZone = "UTC";

@@ -1,39 +1,229 @@
+:root {
+  --bg: #000;
+  --bg-soft: #0b0f0b;
+
+  --green-main: hsl(133 100% 45%);
+  --green-dark: hsl(133 100% 25%);
+  --green-glow: hsl(133 100% 60%);
+  --green-muted: hsl(133 40% 35%);
+
+  --green-light: hsl(133 100% 65%); /* lighter than main, good for hover */
+  --green-lighter: hsl(133 100% 75%); /* very light, subtle backgrounds */
+  --green-darkest: hsl(
+    133 100% 15%
+  ); /* almost black-green, for shadows or text */
+  --green-soft: hsl(
+    133 60% 50%
+  ); /* slightly desaturated for calm UI elements */
+  --green-muted-light: hsl(133 40% 45%); /* lighter version of muted */
+  --green-glow-strong: hsl(133 100% 70%); /* stronger glow effect */
+  --green-overlay: hsla(
+    133 100% 45% / 0.2
+  ); /* semi-transparent for overlays or focus */
+}
+
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent;
 }
 
-#app {
-  position: absolute;
+body {
+  height: 100vh;
+  height: 100dvh;
   padding: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  inset: 0;
 
-  text-align: center;
-  background-color: var(--forground);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  font-family: digital;
+  background-color: var(--bg-soft);
+  color: var(--green-main);
 }
 
-#datetime {
-  position: relative;
-  padding: 3rem 4rem;
+@font-face {
+  font-family: digital;
+  src: url(./assets/fonts/ds-digital/DS-DIGII.TTF);
+}
+
+#app {
+  width: min(700px, 100%);
+  height: max(300px, 64vh);
+  padding: 2rem;
   border: solid 1px;
-  border-radius: 8px;
-}
-.icon {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 30px;
-}
-#date {
-  letter-spacing: 1px;
+  /* background-color: var(--bg-soft); */
+  border-radius: 12px;
+
+  opacity: 0;
+  transition: 0.3s ease;
 }
 
-#time {
-  font-size: 6vw;
-  font-weight: 700;
+header {
+  height: 8vh;
+}
+
+header .title {
+  margin-left: 0.8rem;
+  position: relative;
+  font-size: 2rem;
+}
+
+header .description {
+  margin-top: 4px;
+  color: var(--green-muted-light);
+}
+
+.title::before,
+.title::after {
+  content: "";
+  display: block;
+  position: absolute;
+
+  width: 4px;
+  height: 32px;
+  background-color: var(--green-main);
+}
+
+.title::before {
+  bottom: 0;
+  transform: translateX(-8px);
+  animation: grow-shrink 2s ease-in-out infinite;
+}
+
+.title::after {
+  top: 0;
+  transform: translateX(-16px);
+  animation: grow-shrink 3s ease-in-out infinite;
+}
+
+@keyframes grow-shrink {
+  0%,
+  100% {
+    height: 0;
+  }
+  50% {
+    height: 36px;
+  }
+}
+
+main {
+  --h: calc(52vh - 4rem);
+  height: var(--h);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.display {
+  margin: auto;
+  margin-top: 20%;
+}
+
+.display hr {
+  margin: 2px 0;
+  border-color: var(--green-main);
+}
+
+.display .time {
+  font-size: 4rem;
+  font-weight: 900;
+  font-family: digital;
+}
+
+.time-container {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  /* border: solid; */
+}
+
+.time-container > section {
+  height: fit-content;
+  padding: 0.2rem;
+  display: inline;
+  /* border: solid; */
+}
+.time-container span {
+  font-size: 1rem;
+  display: block;
+}
+
+.region {
+  font-size: 1.2rem;
+}
+
+.date {
+  margin-top: 4px;
+  text-align: right;
+}
+
+.timezones {
+  padding: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.timezones > section * {
+  margin: 2px 0;
+}
+
+.timezones input {
+  width: 100%;
+  padding: 0.6rem 0.4rem;
+
+  font-family: inherit;
+  font-size: inherit;
+  background-color: var(--clr-accent-dark);
+  color: var(--clr-accent);
+  border: solid 1px;
+  outline: none;
+}
+
+.timezones ul {
+  height: calc(var(--h) * 0.8);
+  margin-top: 0.5rem;
+  padding-right: 0.2rem;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.timezones ul::-webkit-scrollbar {
+  width: 4px;
+}
+
+.timezones ul::-webkit-scrollbar-thumb {
+  width: 4px;
+  background-color: var(--green-main);
+}
+
+.timezones ul::-webkit-scrollbar-track {
+  width: 4px;
+  background-color: var(--green-dark);
+}
+
+.timezones ul li {
+  cursor: pointer;
+  margin: 2px 0;
+  padding: 0.2rem;
+  border: solid 1px;
+}
+
+.timezones ul li:hover {
+  background-color: var(--green-overlay);
+}
+
+@media (max-width: 600px) {
+  #app {
+    position: absolute;
+    inset: 0;
+
+    width: 100vw;
+    height: 100dvh;
+    border: none;
+    border-radius: 0;
+  }
+
+  main {
+    grid-template-columns: 1fr;
+  }
 }
