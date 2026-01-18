@@ -22,7 +22,7 @@ function getUTCDateTime() {
   return {
     date,
     time,
-    isoString,
+    iso,
     timestamp,
     timeZone,
     parts: {
