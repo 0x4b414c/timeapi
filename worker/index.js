@@ -16,7 +16,7 @@ function getUTCDateTime() {
   const time = `${hour}:${minute}:${second}`;
 
   const timeZone = "UTC";
-  const isoString = datetime.toISOString();
+  const iso = datetime.toISOString();
   const timestamp = datetime.getTime();
 
   return {
